@@ -1,5 +1,5 @@
 
-# FastAPI backend
+# FastAPI backendddd
 
 
 from fastapi import FastAPI, HTTPException
@@ -25,7 +25,7 @@ engine = create_engine(DATABASE_URL)
 metadata = MetaData()
 
 try:
-    
+ 
     producttype = Table("producttype", metadata, autoload_with=engine)
     materialtype = Table("materialtype", metadata, autoload_with=engine)
     workshopcategory = Table("workshopcategory", metadata, autoload_with=engine)
@@ -231,7 +231,6 @@ def get_material_types():
     except SQLAlchemyError as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
 @app.get("/workshops")
 def get_workshops():
     q = text("""
@@ -325,7 +324,6 @@ def delete_production_process(process_id: int):
     except SQLAlchemyError as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
 @app.get("/manufacture-time/{product_id}")
 def manufacture_time(product_id: int):
     if not exists_in_table(product, product_id):
@@ -340,7 +338,6 @@ def manufacture_time(product_id: int):
             return {"product_id": product_id, "manufacture_time_hours": int(math.ceil(total))}
     except SQLAlchemyError as e:
         raise HTTPException(status_code=500, detail=str(e))
-
 
 @app.get("/calc-raw")
 def calc_raw(product_type_id: int, material_type_id: int, quantity: int, p1: float, p2: float):
